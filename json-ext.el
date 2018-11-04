@@ -3,6 +3,8 @@
 
 ;;; Code:
 
+(require 'json)
+
 (defun json-ext-escape ()
   "Replace whitespace characters in json with c# equivalents."
   (interactive)
@@ -23,7 +25,9 @@ CHAR-ASSOC - key-value list"
   "Replace escaped whitespace character to real characters."
   (interactive)
   (let ((seq '(("\\n". ?\n) ("\\t" . ?\t) ("\\\"" . ?\"))))
-    (mapc 'json-ext-replace seq)))
+    (mapc 'json-ext-replace seq))
+  (json-pretty-print-buffer)
+  (json-mode))
 
 (provide 'json-ext)
 ;;; json-ext ends here
